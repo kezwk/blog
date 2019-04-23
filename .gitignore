@@ -1,5 +1,6 @@
 .idea
 composer.lock
 *.log
+*.confgit
 vendor
 nginx
