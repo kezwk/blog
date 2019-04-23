@@ -1,10 +1,15 @@
 <?php
+
 namespace app\index\controller;
 
-class Index
+use think\Controller;
+
+class Index extends Controller
 {
     public function index()
     {
-        return 'blog';
+      return $this->fetch('menu/right');
+//        return ROOT_PATH;
     }
+
 }
