@@ -1,6 +1,7 @@
 .idea
 composer.lock
 *.log
+*.conffi
 thinkphp
 /vendor
 /nginx
