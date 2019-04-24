@@ -8,8 +8,7 @@ class Index extends Controller
 {
     public function index()
     {
-      return $this->fetch('menu/right');
-//        return ROOT_PATH;
+      return $this->fetch();
     }
 
 }
