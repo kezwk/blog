@@ -240,4 +240,6 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+    date_default_timezone_set('PRC'),
+    define('DATE', date('Y-m-d H:i:s',time()))
 ];
