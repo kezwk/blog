@@ -3,6 +3,6 @@ composer.lock
 *.log
 *.conf
 vendor
-nginx
+nginx/
 runtime
 log
