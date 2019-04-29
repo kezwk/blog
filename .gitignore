@@ -6,4 +6,4 @@ vendor
 nginx/
 runtime
 log
-!public/
+public/
