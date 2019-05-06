@@ -1,5 +1,5 @@
 {include file="base/base"/}
-<form class="layui-form" action="" style="margin:20px 0 0 200px;">
+<div class="layui-form" action="" style="margin:20px 0 0 200px;">
     <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-block">
@@ -12,11 +12,11 @@
         <div class="layui-input-block">
             <select name="category" lay-verify="required">
                 <option value=""></option>
-                <option value="0">PHP</option>
-                <option value="1">JS</option>
-                <option value="2">MYSQL</option>
-                <option value="3">LINUX</option>
-                <option value="4">OTHER</option>
+                {volist name='cate' id='vo'}
+                <option value="{$vo.id}"
+                <?php if(isset($data['category']) && $data['category']==$vo['id']){ echo 'selected';}?>
+                >{$vo.name}</option>
+                {/volist}
             </select>
         </div>
     </div>
@@ -24,20 +24,25 @@
         <label class="layui-form-label">是否可见</label>
         <div class="layui-input-block">
             <input type="checkbox" name="switch" lay-skin="switch" value="{$data['visitable'] ?? ''}">
+            <div class="layui-unselect layui-form-switch" id="sw" lay-skin="_switch"><em></em><i></i></div>
         </div>
     </div>
-    <div id="myeditor">
-        <!-- 富文本编辑器 -->
-        <div id="editormd"></div>
+    <?php
+        if(isset($data['content'])&&isset($data['markdown_code'])){
+           echo "<div id='content' hidden>".$data['content']."</div>";
+           echo "<div id='markdown' hidden>".$data['markdown_code']."</div>";
+        }?>
+<div id="myeditor">
+    <!-- 富文本编辑器 -->
+    <div id="editormd"></div>
+</div>
+<div class="layui-form-item">
+    <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+        <div class="layui-btn layui-btn-primary" id="reset">重置</div>
     </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-            <div class="layui-btn layui-btn-primary" id="reset">重置</div>
-        </div>
-    </div>
+</div>
 </form>
-
 </div>
 <script src="__STATIC__/jquery/dist/jquery.js"></script>
 <script src="__STATIC__/editormd/editormd.min.js"></script>
@@ -55,6 +60,7 @@
 <script src="__STATIC__/editormd/lib/jquery.flowchart.min.js"></script>
 
 <script type="text/javascript">
+        let markdown = $('#markdown').html();
     editormd("editormd", {
         width: "90%",
         height: 550,
@@ -62,7 +68,7 @@
         theme: "default",
         previewTheme: "default",
         editorTheme: "default",
-        //markdown : md,             // 初始化编辑区的内容
+        markdown : markdown,             // 初始化编辑区的内容
         codeFold: true,
         //syncScrolling : false,
         saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
@@ -90,6 +96,11 @@
 <script>
     $(function () {
         $('.editormd-html-textarea').attr({'lay-verify': 'required'});
+        let sw = $("#sw");
+        let va = $("input[name='switch']").val();
+        if (va == 1) {
+            sw.addClass("layui-form-onswitch");
+        }
         $('#reset').on('click', function () {
             layer.open({
                 content: '确定重置吗？',
@@ -98,13 +109,18 @@
                     window.location.href = 'admin'
                 }
             })
-        })
+        });
 
-        var v = $("input[name='switch']");
+        // if ($('#content').length > 0) {
+        //     let content = $('#content').html();
+        //     $('.editormd-preview').html(content);
+        // }
+
+
     });
 
     layui.use('form', function () {
-        var form = layui.form;
+        let form = layui.form;
         //监听提交
         form.on('submit(formDemo)', function (data) {
             $.ajax({
