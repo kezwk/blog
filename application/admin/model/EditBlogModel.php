@@ -19,7 +19,7 @@ class EditBlogModel extends Model
 {
     public function getArticle()
     {
-        $data = Db::table('article')->limit(10)->order('id','desc')->select();
+        $data = Db::table('article')->limit(15)->order('id', 'desc')->select();
         foreach ($data as &$v) {
             switch ($v['category']) {
                 case 0:
@@ -35,10 +35,17 @@ class EditBlogModel extends Model
                     $v['category'] = 'LINUX';
                     break;
                 case 4:
-                    $v['category'] = 'OTHER';
+                    $v['category'] = 'Other';
                     break;
             }
             $v['created'] = date('Y-m-d', strtotime($v['created']));
+            if (strpos($v['content'], '<br>')) {
+                $v['content'] = substr($v['content'], 0, strpos($v['content'], '<br>'));
+            } elseif (strpos($v['content'], '<pre>')) {
+                $v['content'] = substr($v['content'], 0, strpos($v['content'], '<pre>'));
+            } else {
+                $v['content'] = substr($v['content'], 0, 100);
+            }
         }
         return $data;
     }

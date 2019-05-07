@@ -23,11 +23,10 @@ class Index extends Controller
     {
         if ($id = Request::instance()->param('id')) {
             $data = Db::table('article')->where('id', $id)->find();
-
-            $this->assign('data',$data);
-       }
+            $this->assign('data', $data);
+        }
         $category = Db::table('category')->select();
-        $this->assign('cate',$category);
+        $this->assign('cate', $category);
         return $this->fetch();
     }
 
@@ -39,10 +38,14 @@ class Index extends Controller
             'category' => $request['category'],
             'visitable' => isset($request['switch']) ? 1 : 0,
             'content' => $request['editormd-html-code'],
-            'markdown_code'=>$request['editormd-markdown-doc'],
+            'markdown_code' => $request['editormd-markdown-doc'],
             'created' => DATE
         ];
-        $res = Db::table('article')->insert($data);
+        if (isset($request['id'])) {
+            $res = Db::table('article')->where('id', $request['id'])->update($data);
+        } else {
+            $res = Db::table('article')->insert($data);
+        }
         if ($res) {
             return ['data' => $request, 'success' => true];
         }
@@ -54,5 +57,14 @@ class Index extends Controller
         $data = $editBlog->getArticle();
         $this->assign('data', $data);
         return $this->fetch();
+    }
+
+    public function deleteBlog()
+    {
+        $id = Request::instance()->param('id');
+        $result = Db::table('article')->delete($id);
+        if ($result) {
+            return ['success' => true];
+        }
     }
 }
