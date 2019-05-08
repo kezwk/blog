@@ -19,17 +19,17 @@
             <li class="layui-nav-item"><a href="">GO!</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
+            {if condition="isset($session)"}
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    KK
+                    Steven
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
-                </dl>
             </li>
             <li class="layui-nav-item"><a href="">退出</a></li>
+            {else /}
+            <li class="layui-nav-item"><a href="">登录</a></li>
+            {/if}
         </ul>
     </div>
 

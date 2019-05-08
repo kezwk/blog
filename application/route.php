@@ -10,5 +10,6 @@ Route::post('deleteBlog','admin/Index/deleteBlog');
 return [
     '/' => 'index',
     '/admin' =>'admin/index/index',
-    '/edit-blog' =>'admin/index/editBlog'
+    '/edit-blog' =>'admin/index/editBlog',
+    '/login' => 'admin/login/index'
 ];
