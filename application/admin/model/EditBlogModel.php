@@ -12,6 +12,7 @@
 
 namespace app\admin\model;
 
+use app\common\func;
 use think\Db;
 use think\Model;
 
@@ -21,23 +22,7 @@ class EditBlogModel extends Model
     {
         $data = Db::table('article')->limit(15)->order('id', 'desc')->select();
         foreach ($data as &$v) {
-            switch ($v['category']) {
-                case 0:
-                    $v['category'] = 'PHP';
-                    break;
-                case 1:
-                    $v['category'] = 'JS';
-                    break;
-                case 2:
-                    $v['category'] = 'MYSQL';
-                    break;
-                case 3:
-                    $v['category'] = 'LINUX';
-                    break;
-                case 4:
-                    $v['category'] = 'Other';
-                    break;
-            }
+            $v['category'] = func::changeCategory($v['category']);
             $v['created'] = date('Y-m-d', strtotime($v['created']));
             if (strpos($v['content'], '<br>')) {
                 $v['content'] = substr($v['content'], 0, strpos($v['content'], '<br>'));

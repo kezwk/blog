@@ -12,13 +12,17 @@
 
 namespace app\index\controller;
 
+use app\index\model\Article;
 use think\Controller;
 use think\Request;
 
 class ArticleDetail extends Controller
 {
-    public function index($id)
+    public function index()
     {
+        $id = Request::instance()->param('id');
+        $data = Article::getArticleById($id);
+        $this->assign('data', $data);
         return $this->fetch();
     }
 }
