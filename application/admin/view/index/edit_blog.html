@@ -10,8 +10,8 @@
             <col width="150">
             <col width="60">
             <col width="150">
-            <col>
-            <col width="200">
+            <col width="50">
+            <col width="150">
 
         </colgroup>
         <thead>
@@ -19,22 +19,20 @@
             <th>标题</th>
             <th>分类</th>
             <th>创建时间</th>
-            <th>内容摘要</th>
+            <th>visitable</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         {volist name='data' id='vo'}
-        <tr>
+        <tr >
             <td>{$vo.title}</td>
             <td>{$vo.category}</td>
             <td>{$vo.created}</td>
-            <td>{$vo.content}</td>
+            <td>{$vo.visitable}</td>
             <td>
-                <a href="edit/{$vo.id}" class="layui-btn layui-btn-normal"
-                   style="width: 40px;height: 25px;line-height: 25px;font-size: 10px;padding: 0">编辑</a>
-                <button value="{$vo.id}" class="layui-btn layui-btn-danger"
-                        style="width: 40px;height: 25px;line-height: 25px;font-size: 10px;padding: 0">删除
+                <a href="edit/{$vo.id}" class="layui-btn layui-btn-normal admin-edit-btn">编辑</a>
+                <button value="{$vo.id}" class="layui-btn layui-btn-danger admin-edit-btn">删除
                 </button>
             </td>
         </tr>

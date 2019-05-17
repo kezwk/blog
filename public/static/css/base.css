@@ -150,3 +150,11 @@ body, th, td {
     margin: 0 auto;
     width: 60%;
 }
+
+.admin-edit-btn {
+    width: 40px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 10px;
+    padding: 0
+}
