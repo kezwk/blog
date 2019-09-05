@@ -1,0 +1,12 @@
+<div class="category">
+    <div class="category-title"> Guide Category</div>
+    {volist name="category" id="vo"}
+    <ul>
+        {if condition = "$category_code == $vo.category_code"}
+        <li style="border-left: 4px #1e90ff solid"><a href="{:url('index',['category_code'=>$category_code])}" style="color: #1e90ff;">{$vo.name}</a></li>
+        {else}
+        <li><a href="{:url('index',['category_code'=>$vo.category_code])}">{$vo.name}</a></li>
+        {/if}
+    </ul>
+    {/volist}
+</div>

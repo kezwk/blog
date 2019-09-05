@@ -12,7 +12,6 @@
 
 namespace app\admin\model;
 
-use app\common\func;
 use think\Db;
 use think\Model;
 
@@ -23,7 +22,6 @@ class EditBlogModel extends Model
         $data = Db::table('article')->limit(15)->order('id', 'desc')->select();
         foreach ($data as &$v) {
             $v['content'] = substr(strip_tags($v['content']),0,600) ;
-//            $v['category'] = func::changeCategory($v['category']);
             $v['visitable'] = $v['visitable'] == 0 ? 'false' : 'true';
         }
         return $data;
