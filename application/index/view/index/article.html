@@ -4,7 +4,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div style="height: 80px;font-size: 25px;line-height: 50px;font-family: Arial;text-align: center;color: #666">
+                <div style="height: 80px;font-size: 25px;line-height: 50px;font-family: Arial;text-align: center;color: #586069">
                     <span class="detail-title" style="margin-top: 2%;display: inline-block">{$data.title}</span>
                 </div>
                 <div class="layui-card-header">
@@ -13,10 +13,49 @@
                 </div>
                 <div class="layui-card-body">
                     <span class="content">
-                        {$data.content}
+                       <div id="myeditor"><div id="editormd"></div></div>
                     </span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div id="markdown" hidden>{$data.markdown_code}</div>
+<script src="__STATIC__/editormd/editormd.min.js"></script>
+<script src="__STATIC__/editormd/lib/marked.min.js"></script>
+<script src="__STATIC__/editormd/lib/prettify.min.js"></script>
+<script src="__STATIC__/editormd/lib/raphael.min.js"></script>
+<script src="__STATIC__/editormd/lib/underscore.min.js"></script>
+<script src="__STATIC__/editormd/lib/sequence-diagram.min.js"></script>
+<script src="__STATIC__/editormd/lib/flowchart.min.js"></script>
+<script src="__STATIC__/editormd/lib/jquery.flowchart.min.js"></script>
+<script type="text/javascript">
+    let markdown = $('#markdown').html();
+    editormd("editormd", {
+        width: "100%",
+        // height: ,
+        path: '__STATIC__/editormd/lib/',
+        theme: "default",
+        previewTheme: "default",
+        editorTheme: "default",
+        markdown: markdown,             // 初始化编辑区的内容
+        codeFold: true,
+        //syncScrolling : false,
+        saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
+        searchReplace: true,
+        //watch : false,                // 关闭实时预览
+        htmlDecode: "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+        //toolbar: true,             //关闭工具栏
+        //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+        emoji: true,
+        taskList: true,
+        tocm: true,         // Using [TOCM]
+        tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+        flowChart: true,             // 开启流程图支持，默认关闭
+        sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+        imageUpload: true,
+        imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+        imageUploadURL: "./php/upload.php", // 文件上传路径，返回值为图片加载的路径,
+        readOnly: true,
+    });
+</script>

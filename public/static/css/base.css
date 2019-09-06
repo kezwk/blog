@@ -3,11 +3,15 @@ body, th, td {
 
 }
 
+a:hover {
+    color: #2e6da4 !important;
+}
+
 .header {
     height: 150px;
     position: relative;
     z-index: -1;
-    background: #f5f9fa;
+    background: #fafbfc;
 }
 
 .top-title {
@@ -16,7 +20,7 @@ body, th, td {
     position: absolute;
     top: 50px;
     left: 200px;
-    color: #232323;
+    color: #3d7e9a;
 }
 
 .nav {
@@ -58,12 +62,14 @@ body, th, td {
 }
 
 .row a {
-    color: dodgerblue;
+    color: #3d7e9a;
 }
-.row i{
+
+.row i {
     position: absolute;
     left: -20px;
 }
+
 .description {
     margin-top: 5px;
     line-height: 20px;
@@ -91,7 +97,8 @@ body, th, td {
     border-left: 4px silver solid;
     text-align: center;
 }
-.category li a{
+
+.category li a {
     color: rgba(0, 0, 0, .5);
 }
 
@@ -128,7 +135,7 @@ body, th, td {
 }
 
 .content {
-    color: #666;
+    color: #586069!important;
     font-size: 15px;
 }
 
@@ -145,7 +152,7 @@ body, th, td {
     padding: 0
 }
 
-.article-block{
+.article-block {
     display: inline-block;
     width: 60%;
     margin: 0 auto;
@@ -153,7 +160,7 @@ body, th, td {
     left: 500px;
 }
 
-.login{
+.login {
     width: 60px;
     height: 40px;
     position: absolute;
@@ -161,10 +168,18 @@ body, th, td {
     right: 50px;
 }
 
-.setting{
+.login a {
+    color: #586069 !important;
+}
+
+.setting {
     width: 60px;
     height: 40px;
     position: absolute;
     top: 10px;
-    right: 130px;
+    right: 110px;
+}
+
+.setting a {
+    color: #586069 !important;
 }
