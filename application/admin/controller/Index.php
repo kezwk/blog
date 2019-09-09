@@ -38,12 +38,13 @@ class Index extends Controller
             'category_id' => $request['category'],
             'visitable' => isset($request['switch']) ? 1 : 0,
             'content' => $request['editormd-html-code'],
-            'markdown_code' => $request['editormd-markdown-doc'],
-            'created' => DATE
+            'markdown_code' => $request['editormd-markdown-doc']
         ];
         if (isset($request['id'])) {
+            $data['update'] = time();
             $res = Db::table('article')->where('id', $request['id'])->update($data);
         } else {
+            $data['created'] = time();
             $res = Db::table('article')->insert($data);
         }
         if ($res) {

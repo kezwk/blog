@@ -1,17 +1,27 @@
 <?php
+
 use  think\Route;
 
-Route::post('addBlog','admin/index/addBlog');
-Route::get('article','index/index/article');
-Route::get('edit/:id','admin/Index/index');
-Route::post('deleteBlog','admin/Index/deleteBlog');
-Route::get('category/:cate_code','index/index/category');
-Route::get('/:category_code','index');
+//index
+Route::get('article', 'index/index/article');
+Route::get('category/:cate_code', 'index/index/category');
+Route::get('/:category_code', 'index');
+
+//admin
+Route::get('admin/index/edit/:id', 'admin/index/index');
+
+Route::post('addBlog', 'admin/index/addBlog');
+Route::post('deleteBlog', 'admin/Index/deleteBlog');
+
 
 return [
+//index
     '/' => 'index',
-    '/admin' =>'admin/index/index',
-    '/edit-blog' =>'admin/index/editBlog',
+    '/category' => 'index/index/category',
+
+//admin
+    '/admin' => 'admin/index/editBlog',
+    '/admin/index/add-blog' => 'admin/index/index',
+    '/admin/index/edit-blog' => 'admin/index/editBlog',
     '/login' => 'admin/login/index',
-    '/category' => 'index/index/category'
 ];

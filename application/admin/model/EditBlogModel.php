@@ -19,11 +19,22 @@ class EditBlogModel extends Model
 {
     public function getArticle()
     {
-        $data = Db::table('article')->limit(15)->order('id', 'desc')->select();
+        $data = Db::table('article')
+            ->alias('a')
+            ->field('a.*,c.name as category_name')
+            ->join('category c', 'c.id = a.category_id', 'left')
+            ->order('a.created', 'desc')
+            ->limit(15)
+            ->select();
         foreach ($data as &$v) {
-            $v['content'] = substr(strip_tags($v['content']),0,600) ;
-            $v['visitable'] = $v['visitable'] == 0 ? 'false' : 'true';
+            $v['content'] = substr(strip_tags($v['content']), 0, 200);
+            $v['created'] = date('Y-m-d H:i:s', $v['created']);
+            if ($v['update']){
+                $v['update'] = date('Y-m-d H:i:s', $v['update']);
+            }
+            $v['visitable'] = $v['visitable'] == 0 ? 'False' : 'True';
         }
+        unset($v);
         return $data;
     }
 }

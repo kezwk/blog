@@ -4,7 +4,6 @@ namespace app\index\controller;
 
 use app\index\model\IndexModel;
 use app\index\service\IndexService;
-use cebe\markdown\Markdown;
 use think\Controller;
 use think\Request;
 
@@ -29,12 +28,9 @@ class Index extends Controller
     {
         $id = Request::instance()->param('id');
         $data = IndexModel::getArticleById($id);
-        $parser = new Markdown();
-        $a = $parser->parse($data['markdown_code']);
         $category = IndexService::getCategory();
         $this->assign('data', $data);
         $this->assign('category', $category);
-        $this->assign('a', $a);
         $this->assign('category_code', $data['category_code']);
         return $this->fetch();
     }

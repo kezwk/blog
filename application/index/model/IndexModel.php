@@ -22,9 +22,14 @@ class IndexModel extends Model
         $data = Db::table('Article')->alias('a')
             ->field('a.*,c.name category_name,c.code category_code')
             ->join('category c', 'a.category_id = c.id', 'left')
-            ->order('created','desc')
+            ->order('created', 'desc')
+            ->where('a.id', $id)
             ->limit(15)
-            ->where('a.id', $id)->find();
+            ->find();
+        $data['created'] = date('Y-m-d H:i:s', $data['created']);
+        if ($data['update']) {
+            $data['update'] = date('Y-m-d H:i:s', $data['update']);
+        }
         return $data;
     }
 
@@ -37,18 +42,24 @@ class IndexModel extends Model
     {
         return Db::table('article')->alias('a')
             ->field('c.id,c.name,count(c.id) as count')
-            ->join('category c','c.id = a.category_id','left')
+            ->join('category c', 'c.id = a.category_id', 'left')
             ->select();
     }
 
     public static function getArticleByCode($code)
     {
-        $data = Db::table('Article')->field('a.*,c.name,c.code category_code')->alias('a')->join('category c', 'a.category_id = c. id', 'left')
-            ->where('c.name', $code)->select();
+        $data = Db::table('Article')->alias('a')
+            ->field('a.*,c.name,c.code category_code')
+            ->join('category c', 'a.category_id = c. id', 'left')
+            ->where('c.name', $code)
+            ->order('created', 'desc')
+            ->select();
         foreach ($data as &$v) {
             $v['content'] = substr(strip_tags($v['content']), 0, 600);
-            $v['visitable'] = $v['visitable'] == 0 ? 'false' : 'true';
+            $v['created'] = date('Y-m-d H:i:s', $v['created']);
+//            $v['visitable'] = $v['visitable'] == 0 ? false : true;
         }
+        unset($v);
         return $data;
     }
 
@@ -57,8 +68,10 @@ class IndexModel extends Model
         $data = Db::table('Article')->limit(15)->order('created', 'desc')->select();
         foreach ($data as &$v) {
             $v['content'] = substr(strip_tags($v['content']), 0, 600);
-            $v['visitable'] = $v['visitable'] == 0 ? 'false' : 'true';
+            $v['created'] = date('Y-m-d H:i:s', $v['created']);
+//            $v['visitable'] = $v['visitable'] == 0 ? 'false' : 'true';
         }
+        unset($v);
         return $data;
     }
 }
