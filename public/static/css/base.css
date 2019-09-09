@@ -1,5 +1,5 @@
 body, th, td {
-    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 
 }
 
@@ -10,8 +10,8 @@ a:hover {
 .header {
     height: 150px;
     position: relative;
-    z-index: -1;
     background: #fafbfc;
+    max-width: 100% !important;
 }
 
 .top-title {
@@ -21,6 +21,7 @@ a:hover {
     top: 50px;
     left: 200px;
     color: #3d7e9a;
+    font-size: 30px;
 }
 
 .nav {
@@ -70,10 +71,16 @@ a:hover {
     left: -20px;
 }
 
+.row-time {
+    font-size: 13px;
+    float: right;
+    color: #4d4e53;
+}
+
 .description {
     margin-top: 5px;
     line-height: 20px;
-    color: rgba(0, 0, 0, .5);
+    color: #24292e;
     height: 60px;
     text-align: justify;
     overflow: hidden;
@@ -110,6 +117,11 @@ a:hover {
     color: rgba(0, 0, 0, .25);
 }
 
+.category li {
+    text-align: left;
+    padding-left: 20px;
+}
+
 .header-cate {
     width: 100px;
     font-size: 13px;
@@ -135,7 +147,7 @@ a:hover {
 }
 
 .content {
-    color: #586069!important;
+    color: #586069 !important;
     font-size: 15px;
 }
 
@@ -161,7 +173,7 @@ a:hover {
 }
 
 .login {
-    width: 60px;
+    width: 100px;
     height: 40px;
     position: absolute;
     top: 10px;
@@ -173,7 +185,7 @@ a:hover {
 }
 
 .setting {
-    width: 60px;
+    width: 100px;
     height: 40px;
     position: absolute;
     top: 10px;
@@ -182,4 +194,9 @@ a:hover {
 
 .setting a {
     color: #586069 !important;
+}
+
+.link h3{
+    text-align: left !important;
+    font-size: 20px !important;
 }

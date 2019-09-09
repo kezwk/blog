@@ -1,11 +1,11 @@
 <div class="category">
-    <div class="category-title"> Guide Category</div>
+    <div class="category-title">我的标签</div>
     {volist name="category" id="vo"}
     <ul>
         {if condition = "$category_code == $vo.category_code"}
-        <li style="border-left: 4px #3d7e9a solid"><a href="{:url('index',['category_code'=>$category_code])}" style="color: #3d7e9a;">{$vo.name}</a></li>
+        <li style="border-left: 4px #3d7e9a solid"><a href="{:url('index',['category_code'=>$category_code])}" style="color: #3d7e9a;">{$vo.name}({$vo.count})</a></li>
         {else}
-        <li><a href="{:url('index',['category_code'=>$vo.category_code])}">{$vo.name}</a></li>
+        <li><a href="{:url('index',['category_code'=>$vo.category_code])}">{$vo.name}({$vo.count})</a></li>
         {/if}
     </ul>
     {/volist}

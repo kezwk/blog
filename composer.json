@@ -22,6 +22,9 @@
         "cebe/markdown": "~1.2.0"
     },
     "autoload": {
+        "classmap":[
+            "application/index/service"
+        ],
         "psr-4": {
             "app\\": "application"
         }

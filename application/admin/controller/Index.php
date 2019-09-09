@@ -35,7 +35,7 @@ class Index extends Controller
         $request = Request::instance()->param();
         $data = [
             'title' => $request['title'],
-            'category' => $request['category'],
+            'category_id' => $request['category'],
             'visitable' => isset($request['switch']) ? 1 : 0,
             'content' => $request['editormd-html-code'],
             'markdown_code' => $request['editormd-markdown-doc'],
