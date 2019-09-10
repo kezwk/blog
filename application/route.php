@@ -5,7 +5,7 @@ use  think\Route;
 //index
 Route::get('article', 'index/index/article');
 Route::get('category/:cate_code', 'index/index/category');
-Route::get('index/:category_code', 'index');
+Route::get('c/:category_code', 'index');
 //admin
 Route::post('admin/addBlog', 'admin/index/addBlog');
 Route::post('edit/addBlog', 'admin/index/addBlog');
