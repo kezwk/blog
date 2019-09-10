@@ -34,11 +34,12 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:;">首页</a>
+                    <a href="{:url('@admin')}">首页</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="{:url('add-blog')}" >创建文章</a></dd>
-                        <dd><a href="{:url('edit-blog')}">修改文章</a></dd>
-                        <dd><a href="{:url('add-category')}">创建标签</a></dd>
+                        <dd><a href="{:url('@admin/add-blog')}" >创建文章</a></dd>
+                        <dd><a href="{:url('@admin/edit')}">文章管理</a></dd>
+                        <dd><a href="{:url('@admin/add-category')}">创建标签</a></dd>
+                        <dd><a href="{:url('@admin/edit-category')}">标签管理</a></dd>
                     </dl>
                 </li>
             </ul>

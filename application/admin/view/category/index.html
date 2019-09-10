@@ -1,0 +1,62 @@
+{include file="base/base"/}
+<div style="width: 30%;position: absolute;top: 80px;left: 200px;" >
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标签名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="title" autocomplete="off"
+                       placeholder="请输入标签名称" class="layui-input" value="{$data['name'] ?? ''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">标签Code</label>
+            <div class="layui-input-block">
+                <input type="text" name="code" lay-verify="code" autocomplete="off"
+                       placeholder="请输入Code" class="layui-input" value="{$data['code'] ?? ''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="add-category">提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use('form', function () {
+        let form = layui.form;
+        form.verify({
+            title: function(value){
+                let reg = /^[\u4e00-\u9fa5A-Za-z]{2,20}$/;
+                if(!reg.test(value)){
+                    return '请输入正确的格式';
+                }
+            }
+            ,code: [
+                /^[a-z]{2,20}$/
+                ,'code为小写英文'
+            ]
+        });
+        //监听提交
+        form.on('submit(add-category)', function (data) {
+            $.ajax({
+                type: 'post',
+                url: 'add-category',
+                data: data.field,
+                success: function (res) {
+                    if (res.success) {
+                        layer.open({
+                            content: '提交成功！',
+                            yes: function () {
+                                window.location.href = '/admin'
+                            }
+                        });
+                    } else {
+                        layer.msg('error');
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>

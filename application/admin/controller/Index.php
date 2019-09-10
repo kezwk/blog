@@ -16,6 +16,7 @@ use app\admin\model\EditBlogModel;
 use think\Controller;
 use think\Db;
 use \think\Request;
+use think\Validate;
 
 class Index extends Controller
 {
@@ -33,6 +34,17 @@ class Index extends Controller
     public function addBlog()
     {
         $request = Request::instance()->param();
+        $validate = new Validate([
+            'title' => 'require|max:20',
+            'category_id' => 'int',
+            'switch' => 'require',
+            'editormd-html-code' => 'require',
+            'editormd-markdown-doc' => 'require',
+        ]);
+
+        if (!$validate->check($request)) {
+            dump($validate->getError());
+        }
         $data = [
             'title' => $request['title'],
             'category_id' => $request['category'],
@@ -63,7 +75,8 @@ class Index extends Controller
     public function deleteBlog()
     {
         $id = Request::instance()->param('id');
-        $result = Db::table('article')->delete($id);
+//        $result = Db::table('article')->delete($id);
+        $result = Db::table('article')->where('id', $id)->update(['deleted' => 0]);
         if ($result) {
             return ['success' => true];
         }

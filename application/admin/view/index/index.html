@@ -16,9 +16,7 @@
             <select name="category" lay-verify="required">
                 <option value=""></option>
                 {volist name='cate' id='vo'}
-                <option value="{$vo.id}"
-                <?php if(isset($data['category']) && $data['category']==$vo['id']){ echo 'selected';}?>
-                >{$vo.name}</option>
+                <option value="{$vo.id}" {if condition="isset($data.category_id) && $vo.id == $data.category_id"}selected{/if}>{$vo.name}</option>
                 {/volist}
             </select>
         </div>
@@ -26,8 +24,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">是否可见</label>
         <div class="layui-input-block">
-            <input type="checkbox" name="switch" lay-skin="switch" value="{$data['visitable'] ?? ''}">
-            <div class="layui-unselect layui-form-switch" id="sw" lay-skin="_switch"><em></em><i></i></div>
+            <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF"  {if condition = "isset($data.visitable) && $data.visitable"}checked value="{$data['visitable']}"{/if}>
         </div>
     </div>
     <?php
@@ -45,8 +42,7 @@
         <div class="layui-btn layui-btn-primary" id="reset">重置</div>
     </div>
 </div>
-</form>
-</div>
+
 <script src="__STATIC__/editormd/editormd.min.js"></script>
 <!-- 页面markdown解析成HTML需要的js -->
 <script src="__STATIC__/editormd/lib/marked.min.js"></script>
@@ -94,11 +90,6 @@
 <script>
     $(function () {
         $('.editormd-html-textarea').attr({'lay-verify': 'required'});
-        let sw = $("#sw");
-        let va = $("input[name='switch']").val();
-        if (va == 1) {
-            sw.addClass("layui-form-onswitch");
-        }
         $('#reset').on('click', function () {
             layer.open({
                 content: '确定重置吗？',
@@ -116,7 +107,7 @@
         form.on('submit(formDemo)', function (data) {
             $.ajax({
                 type: 'post',
-                url: '/addBlog',
+                url: 'addBlog',
                 data: data.field,
                 success: function (res) {
                     if (res.success) {

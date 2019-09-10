@@ -3,9 +3,9 @@
     {volist name="category" id="vo"}
     <ul>
         {if condition = "$category_code == $vo.category_code"}
-        <li style="border-left: 4px #3d7e9a solid"><a href="{:url('index',['category_code'=>$category_code])}" style="color: #3d7e9a;">{$vo.name}({$vo.count})</a></li>
+        <li style="border-left: 4px #3d7e9a solid"><a href="{:url('index')}{$vo.category_code}" style="color: #3d7e9a;">{$vo.name}({$vo.count})</a></li>
         {else}
-        <li><a href="{:url('index',['category_code'=>$vo.category_code])}">{$vo.name}({$vo.count})</a></li>
+        <li><a href="{:url('index')}{$vo.category_code}">{$vo.name}({$vo.count})</a></li>
         {/if}
     </ul>
     {/volist}

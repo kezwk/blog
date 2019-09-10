@@ -23,6 +23,7 @@ class EditBlogModel extends Model
             ->alias('a')
             ->field('a.*,c.name as category_name')
             ->join('category c', 'c.id = a.category_id', 'left')
+            ->where('a.deleted',1)
             ->order('a.created', 'desc')
             ->limit(15)
             ->select();

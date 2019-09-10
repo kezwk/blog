@@ -35,7 +35,7 @@ class IndexModel extends Model
 
     public static function getCategory()
     {
-        return Db::table('category')->field('id,name,code category_code')->select();
+        return Db::table('category')->field('id,name,code category_code')->where('deleted','1')->select();
     }
 
     public static function countCategory()
@@ -43,6 +43,7 @@ class IndexModel extends Model
         return Db::table('article')->alias('a')
             ->field('c.id,c.name,count(c.id) as count')
             ->join('category c', 'c.id = a.category_id', 'left')
+            ->where('a.deleted',1)
             ->select();
     }
 
@@ -52,12 +53,12 @@ class IndexModel extends Model
             ->field('a.*,c.name,c.code category_code')
             ->join('category c', 'a.category_id = c. id', 'left')
             ->where('c.name', $code)
+            ->where('a.deleted',1)
             ->order('created', 'desc')
             ->select();
         foreach ($data as &$v) {
             $v['content'] = substr(strip_tags($v['content']), 0, 600);
             $v['created'] = date('Y-m-d H:i:s', $v['created']);
-//            $v['visitable'] = $v['visitable'] == 0 ? false : true;
         }
         unset($v);
         return $data;
@@ -65,11 +66,15 @@ class IndexModel extends Model
 
     public static function getAll()
     {
-        $data = Db::table('Article')->limit(15)->order('created', 'desc')->select();
+        $data = Db::table('Article')
+            ->where('deleted', 1)
+            ->where('visitable', 1)
+            ->limit(15)
+            ->order('created', 'desc')
+            ->select();
         foreach ($data as &$v) {
             $v['content'] = substr(strip_tags($v['content']), 0, 600);
             $v['created'] = date('Y-m-d H:i:s', $v['created']);
-//            $v['visitable'] = $v['visitable'] == 0 ? 'false' : 'true';
         }
         unset($v);
         return $data;
