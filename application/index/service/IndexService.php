@@ -12,8 +12,6 @@ class IndexService
             foreach ($categoryCount as $_item) {
                 if ($item['id'] == $_item['id']) {
                     $item['count'] = $_item['count'];
-                } else {
-                    $item['count'] = 0;
                 }
             }
         }

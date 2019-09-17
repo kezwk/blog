@@ -40,10 +40,11 @@ class IndexModel extends Model
 
     public static function countCategory()
     {
-        return Db::table('article')->alias('a')
+        return Db::table('category')->alias('c')
             ->field('c.id,c.name,count(c.id) as count')
-            ->join('category c', 'c.id = a.category_id', 'left')
+            ->join('Article a', 'c.id = a.category_id', 'left')
             ->where('a.deleted',1)
+            ->group('c.id')
             ->select();
     }
 
