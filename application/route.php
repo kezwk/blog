@@ -25,4 +25,5 @@ return [
     '/edit-category/:id' => 'admin/category/index',
     '/admin/add-category' => 'admin/category/index',
     '/admin/edit-category' => 'admin/category/editCategory',
+    '/admin/login' => 'admin/login/index',
 ];

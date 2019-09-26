@@ -35,15 +35,15 @@ class Index extends Controller
     {
         $request = Request::instance()->param();
         $validate = new Validate([
-            'title' => 'require|max:20',
+            'title' => 'require|max:30',
             'category_id' => 'int',
-            'switch' => 'require',
             'editormd-html-code' => 'require',
             'editormd-markdown-doc' => 'require',
         ]);
 
         if (!$validate->check($request)) {
             dump($validate->getError());
+            return ['success' => false];
         }
         $data = [
             'title' => $request['title'],

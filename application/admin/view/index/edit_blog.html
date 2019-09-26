@@ -64,16 +64,11 @@
                 yes: function () {
                     $.ajax({
                         type: 'post',
-                        url: 'deleteBlog',
+                        url: "{:url('/admin/deleteBlog')}",
                         data: {id: id},
                         success: function (result) {
                             if (result.success) {
-                                layer.open({
-                                    content: '删除成功',
-                                    yes: function () {
-                                        window.location.reload();
-                                    }
-                                })
+                                window.location.reload();
                             } else {
                                 layer.msg('删除失败');
                             }

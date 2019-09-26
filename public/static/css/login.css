@@ -1,11 +1,13 @@
-body{
-
+body {
+    background: #fffffc !important;
 }
-.header{
+
+.header {
     float: right;
     position: relative;
 }
-.main{
+
+.main {
     border: 2px silver solid;
     width: 400px;
     height: 500px;
@@ -15,4 +17,29 @@ body{
     float: right;
     top: 200px;
     right: 200px;
+    background: #ffffff;
+}
+
+.input-group {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.title{
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    line-height: 150px;
+    font-size: 30px;
+}
+
+.login{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.login button{
+    width: 90%;
+    margin: 0 auto;
 }
