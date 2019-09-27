@@ -1,5 +1,5 @@
 body, th, td {
-    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: "Century Gothic", Consolas, "Liberation Mono", Courier, Verdana;
     background: #ffffff !important;
 }
 /*a:hover {*/
@@ -158,7 +158,7 @@ body, th, td {
 }
 .top-search{
     position: absolute;
-    top: 35px;
+    top: 30px;
     left: 180px;
     width: 200px;
     height: 50px;
@@ -210,7 +210,7 @@ body, th, td {
 
 .link h3 {
     text-align: left !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
     margin-left: 20px;
     color: #337ab7;
 }
