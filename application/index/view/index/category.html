@@ -1,9 +1,12 @@
-<ul class="nav nav-pills" role="tablist" style="margin-top:-100px;margin-left: 160px">
-    {volist name="category" id="vo"}
-    <li role="presentation" {if condition = "$category_code == $vo.category_code"}class="active"{/if}>
-    <a href="{:url('@category/')}{$vo.category_code}">{$vo.name}<span class="badge">{$vo.count??''}</span></a>
-    </li>
-    {/volist}
-</ul>
+<div class="top-category">
+    <ul class="nav nav-pills" role="tablist">
+        {volist name="category" id="vo"}
+        <li role="presentation" {if condition = "$category_code == $vo.category_code"}class="active"{/if}>
+        <a href="{:url('@category/')}{$vo.category_code}">{$vo.name}<span class="badge">{$vo.count??''}</span></a>
+        </li>
+        {/volist}
+    </ul>
+</div>
+
 
 

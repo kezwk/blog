@@ -2,10 +2,12 @@
 {include file="index:category"}
 <div class="main">
     {volist name="data" id="vo"}
-    <div class="row">
-        <i class="layui-icon layui-icon-list" style="font-size: 22px;color: #000"></i>
-        <a class="link" href="{:url('/article',['id'=>$vo.id])}"><h3 style="text-align: left !important;">{$vo.title}</h3></a>
-<!--        <div class="description">{$vo.content}</div>-->
+    <div class="article-row">
+        <div class="article-title">
+            <i class="layui-icon layui-icon-list" style="font-size: 23px;color: #337ab7"></i>
+            <a class="link" href="{:url('/article',['id'=>$vo.id])}"><h3 style="text-align: left !important;">{$vo.title}</h3></a>
+        </div>
+        <div class="description">{$vo.content}</div>
     </div>
     {/volist}
 </div>
