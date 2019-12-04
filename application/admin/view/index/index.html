@@ -1,45 +1,53 @@
 {include file="base/base"/}
-<div class="layui-form" action="" style="margin:20px 0 0 200px;">
+<div class="layui-form" action="" style="margin:10px 0 0 200px;">
     {if condition="(isset($data['id']))"}
     <input type="hidden" name="id" value="{$data['id']}">
     {/if}
-    <div class="layui-form-item">
+    <div class="layui-form-item" style="width: 40%">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-block">
             <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
                    class="layui-input" value="{$data['title'] ?? ''}">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">分类</label>
-        <div class="layui-input-block">
-            <select name="category" lay-verify="required">
-                <option value=""></option>
-                {volist name='cate' id='vo'}
-                <option value="{$vo.id}" {if condition="isset($data.category_id) && $vo.id == $data.category_id"}selected{/if}>{$vo.name}</option>
-                {/volist}
-            </select>
+    <div class="layui-form-item" style="position: relative;bottom: 5px;margin-bottom: 30px">
+        <div style="position: absolute">
+            <label class="layui-form-label">分类</label>
+            <div class="layui-input-block">
+                <select name="category" lay-verify="required">
+                    <option value=""></option>
+                    {volist name='cate' id='vo'}
+                    <option value="{$vo.id}" {if condition="isset($data.category_id) && $vo.id == $data.category_id" }selected{/if}>{$vo.name}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div style="position: absolute;left: 330px">
+            <label class="layui-form-label" style="display: inline-block">是否可见</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF" {if
+                       condition="isset($data.visitable) && $data.visitable" }checked value="{$data['visitable']}" {/if}>
+            </div>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">是否可见</label>
-        <div class="layui-input-block">
-            <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF"  {if condition = "isset($data.visitable) && $data.visitable"}checked value="{$data['visitable']}"{/if}>
-        </div>
+
     </div>
     <?php
         if(isset($data['content'])&&isset($data['markdown_code'])){
-           echo "<div id='content' hidden>".$data['content']."</div>";
-           echo "<div id='markdown' hidden>".$data['markdown_code']."</div>";
-        }?>
+           echo "<div id='content' hidden>".$data['content']."
+</div>";
+echo "
+<div id='markdown' hidden>".$data['markdown_code']."</div>";
+}?>
 <div id="myeditor">
     <!-- 富文本编辑器 -->
     <div id="editormd"></div>
 </div>
 <div class="layui-form-item">
     <div class="layui-input-block">
-        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-        <div class="layui-btn layui-btn-primary" id="reset">重置</div>
+        <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+        <div class="layui-btn layui-btn-primary" id="reset">取消</div>
     </div>
 </div>
 
@@ -54,15 +62,15 @@
 <script src="__STATIC__/editormd/lib/jquery.flowchart.min.js"></script>
 
 <script type="text/javascript">
-        let markdown = $('#markdown').html();
+    let markdown = $('#markdown').html();
     editormd("editormd", {
-        width: "90%",
-        height: 550,
+        width: "95%",
+        height: 500,
         path: '__STATIC__/editormd/lib/',
         theme: "default",
         previewTheme: "default",
         editorTheme: "default",
-        markdown : markdown,             // 初始化编辑区的内容
+        markdown: markdown,             // 初始化编辑区的内容
         codeFold: true,
         //syncScrolling : false,
         saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
@@ -92,7 +100,7 @@
         $('.editormd-html-textarea').attr({'lay-verify': 'required'});
         $('#reset').on('click', function () {
             layer.open({
-                content: '确定重置吗？',
+                content: '确定取消吗？',
                 btn: ['确定', '取消'],
                 yes: function () {
                     window.location.href = 'admin'
