@@ -609,7 +609,7 @@ class Template
      */
     private function parseBlock(&$content, $sort = false)
     {
-        $regex  = $this->getRegex('public');
+        $regex  = $this->getRegex('block');
         $result = [];
         if (preg_match_all($regex, $content, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
             $right = $keys = [];
@@ -1097,7 +1097,7 @@ class Template
             $end    = $this->config['taglib_end'];
             $single = strlen(ltrim($begin, '\\')) == 1 && strlen(ltrim($end, '\\')) == 1 ? true : false;
             switch ($tagName) {
-                case 'public':
+                case 'block':
                     if ($single) {
                         $regex = $begin . '(?:' . $tagName . '\b(?>(?:(?!name=).)*)\bname=([\'\"])(?P<name>[\$\w\-\/\.]+)\\1(?>[^' . $end . ']*)|\/' . $tagName . ')' . $end;
                     } else {

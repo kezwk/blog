@@ -7,6 +7,7 @@ use think\Model;
 
 class UserModel extends Model
 {
+    protected $table = 'user';
     public function getUserInfo()
     {
         $user = Db::table('user')->where('id', 1)->select();

@@ -15,7 +15,7 @@ body {
     box-shadow: 0 0 5px silver;
     position: relative;
     float: right;
-    top: 200px;
+    top: 100px;
     right: 200px;
     background: #ffffff;
 }
@@ -42,4 +42,13 @@ body {
 .login button{
     width: 90%;
     margin: 0 auto;
+}
+
+.user-tips{
+    color: #ff7171;
+    height: 15px;
+    width: 90%;
+    margin: 0 auto;
+    vertical-align: middle;
+    font-size: 12px;
 }

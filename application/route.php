@@ -12,11 +12,14 @@ Route::post('edit/addBlog', 'admin/index/addBlog');
 Route::post('admin/add-category', 'admin/Category/addCategory');
 Route::post('admin/deleteBlog', 'admin/Index/deleteBlog');
 Route::post('admin/deleteCategory', 'admin/category/deleteCategory');
+Route::post('login/check', 'index/login/check');
 
 return [
 //index
     '/' => 'index',
     '/category' => 'index/index/category',
+    '/index/login' => 'index/login/index',
+    'index/login_out' => 'index/login/login_out',
 //admin
     '/admin' => 'admin/index/editBlog',
     '/admin/add-blog' => 'admin/index/index',
@@ -25,5 +28,4 @@ return [
     '/edit-category/:id' => 'admin/category/index',
     '/admin/add-category' => 'admin/category/index',
     '/admin/edit-category' => 'admin/category/editCategory',
-    '/admin/login' => 'admin/login/index',
 ];

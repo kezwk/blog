@@ -17,9 +17,9 @@ return [
     // 数据库名
     'database'        => 'blog',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'dev',
     // 密码
-    'password'        => 'root',
+    'password'        => '',
     // 端口
     'hostport'        => '',
     // 连接dsn

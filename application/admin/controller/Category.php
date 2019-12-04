@@ -7,7 +7,7 @@ use think\Controller;
 use think\Request;
 use think\Validate;
 
-class Category extends Controller
+class Category extends Base
 {
     public function index()
     {

@@ -1,9 +1,20 @@
 <div class="header"></div>
 <div class="top-title">
-    <i class="layui-icon layui-icon-component" style="font-size: 28px;margin-right: 5px;color:#24292e"></i>DARC</div>
-<a href="{:url('admin/login/index')}">
-    <div class="back-login"><i class="layui-icon layui-icon-release" style="font-size: 30px; color: #337ab7;"></i></div>
-</a>
-<div class="top-search">
-    <input type="text" class="form-control" placeholder="Search for article">
+    <i class="layui-icon layui-icon-component" style="font-size: 28px;margin-right: 5px;color:#24292e"></i>大科同学
 </div>
+<div class="login-box">
+    <!--    <a href="{:url('admin/login')}">-->
+    <i class="layui-icon layui-icon-release" style="font-size: 30px; color: #337ab7;"></i>
+    <!--    </a>-->
+</div>
+
+<div class="top-search">
+    <input type="text" class="form-control" placeholder="Search for something">
+</div>
+<script>
+    $(function () {
+        $('.login-box').click(function () {
+            window.location.href = "{:url('index/login/index')}";
+        })
+    })
+</script>

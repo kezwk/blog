@@ -12,27 +12,27 @@
 
 namespace app\common;
 
+use app\index\model\UserModel;
+
 class func
 {
-    public static function changeCategory($row)
+    public static function setIdentify($uid)
     {
-        switch ($row) {
-            case 0:
-                $row = 'PHP';
-                break;
-            case 1:
-                $row = 'JS';
-                break;
-            case 2:
-                $row = 'MYSQL';
-                break;
-            case 3:
-                $row = 'LINUX';
-                break;
-            case 4:
-                $row = 'Other';
-                break;
-        }
-        return $row;
+        $uid = intval($uid);
+        self::update_user_last_visit($uid);
+        session_start();
+        $_SESSION['uid'] = $uid;
+        self::update_sessid($uid);
+        return isset($_SESSION['uid']) ? $_SESSION['uid'] : null;
+    }
+
+    public static function update_user_last_visit($uid)
+    {
+        UserModel::update(['id' => $uid, 'last_visit' => time(), 'ip_address' => ip2long($_SERVER["REMOTE_ADDR"])]);
+    }
+
+    public static function update_sessid($uid)
+    {
+        UserModel::update(['id' => $uid, 'sess_id' => session_id()]);
     }
 }

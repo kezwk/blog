@@ -18,7 +18,7 @@ use think\Db;
 use \think\Request;
 use think\Validate;
 
-class Index extends Controller
+class Index extends Base
 {
     public function index()
     {

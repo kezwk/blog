@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="__CSS__/login.css">
+    <link rel="stylesheet" href="__CSS__/bootstrap.css" media="all">
+</head>
+<body>
+<div class="main">
+    <div class="title">
+        Welcome Back
+    </div>
+    <form action="{:url('index/login/check')}" method="post"></form>
+    <div class="input-group">
+        <span class="input-group-addon" id="account">账号</span>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+               aria-describedby="basic-addon1">
+    </div>
+    <div class="user-tips" id="tips1" hidden>
+        <p>用户名不能为空</p>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="pass">密码</span>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+               aria-describedby="basic-addon1">
+    </div>
+    <div class="user-tips" id="tips2" hidden>
+        <p>密码不能为空</p>
+    </div>
+    <div class="input-group" id="authy" style="display: none">
+        <span class="input-group-addon">验证</span>
+        <input type="password" class="form-control" id="sms" name="authy" placeholder="Authy"
+               aria-describedby="basic-addon1">
+    </div>
+    <div class="login">
+        <button type="button" id="btn" class="btn btn-default btn-primary">登录</button>
+    </div>
+</div>
+</body>
+</html>
+<script src="__STATIC__/jquery/dist/jquery.min.js"></script>
+
+<script>
+    $(function () {
+        var login = $('#btn');
+        var username = $('#username');
+        var password = $('#password');
+        var sms = $('#sms');
+        username.blur(function () {
+            if (username.val() == '') {
+                $('#tips1').show();
+            } else {
+                $('#tips1').hide();
+            }
+        });
+        password.blur(function () {
+            if (password.val() == '') {
+                $('#tips2').show();
+            } else {
+                $('#tips2').hide();
+            }
+        });
+        login.click(function () {
+            if (username.val() != '' && password.val() != '') {
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('index/login/check')}",
+                    data: {username: username.val(), password: password.val(), sms: sms.val()},
+                    success: function (result) {
+                        if (result == -1 || result == -2) {
+                            $('#tips2').html('用户名不存在或者密码错误').show();
+                        }
+                        if (result == -4 || result == -5) {
+                            $('#authy').css('display', '');
+                        }
+                        if (result > 0) {
+                            $('#tips2').html('登陆成功').show();
+                            window.location.href = "{:url('admin/login/index')}";
+                        }
+                    }
+                })
+            } else {
+                $('#tips2').html('请输入用户名或密码').show();
+            }
+        });
+
+    })
+
+</script>
