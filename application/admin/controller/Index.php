@@ -42,7 +42,6 @@ class Index extends Base
         ]);
 
         if (!$validate->check($request)) {
-            dump($validate->getError());
             return ['success' => false];
         }
         $data = [
