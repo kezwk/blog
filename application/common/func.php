@@ -20,6 +20,7 @@ class func
     {
         $uid = intval($uid);
         self::update_user_last_visit($uid);
+        session_set_cookie_params(24*3600);
         session_start();
         $_SESSION['uid'] = $uid;
         self::update_sessid($uid);
